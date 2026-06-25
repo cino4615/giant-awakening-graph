@@ -43,10 +43,12 @@
 .gag-search input:focus{border-color:var(--gag-accent)}
 .gag-grp{padding:6px 14px 2px; font-size:11px; font-weight:700; letter-spacing:.06em; color:var(--gag-muted); text-transform:uppercase; display:flex; align-items:center; gap:7px}
 .gag-grp .dot{width:9px; height:9px; border-radius:50%}
-.gag-item{display:flex; align-items:center; gap:10px; padding:10px 16px; cursor:pointer; border-bottom:1px solid rgba(46,44,57,.4)}
+.gag-item{display:flex; align-items:center; gap:11px; padding:10px 16px; cursor:pointer; border-bottom:1px solid rgba(46,44,57,.4)}
 .gag-item:hover{background:var(--gag-surface)}
-.gag-item .dot{width:8px; height:8px; border-radius:50%; flex-shrink:0}
-.gag-item .lbl{font-size:14px; font-weight:400; color:var(--gag-text); flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.gag-item .dot{width:9px; height:9px; border-radius:50%; flex-shrink:0}
+.gag-itxt{flex:1; min-width:0; display:flex; flex-direction:column; gap:1px}
+.gag-itxt .lbl{font-size:14px; color:var(--gag-text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.gag-itxt .gag-grp-s{font-size:11px; color:var(--gag-muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
 .gag-item .arr{color:var(--gag-muted); font-size:13px}
 .gag-empty{padding:30px 16px; text-align:center; color:var(--gag-muted); font-size:14px}
 
@@ -60,17 +62,21 @@
 
 .gag-count{padding:14px 16px 6px; font-size:13px; font-weight:500; color:var(--gag-muted)}
 .gag-list{padding:0 16px 16px}
-.gag-c{padding:12px 0; border-bottom:1px solid rgba(46,44,57,.55)}
-.gag-c .meta{display:flex; align-items:center; gap:8px; margin-bottom:5px}
-.gag-c .nick{font-size:13px; font-weight:600; color:var(--gag-text)}
+.gag-c{display:flex; gap:10px; padding:14px 0; border-bottom:1px solid rgba(46,44,57,.5)}
+.gag-c:last-child{border-bottom:none}
+.gag-av{flex:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font:700 14px 'Noto Sans KR',-apple-system,sans-serif; box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.gag-c.reply .gag-av{width:28px; height:28px; font-size:12px}
+.gag-main{flex:1; min-width:0}
+.gag-c .meta{display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap}
+.gag-c .nick{font-size:13.5px; font-weight:700; color:var(--gag-text); letter-spacing:-.01em}
 .gag-c .time{font-size:11.5px; color:var(--gag-muted)}
-.gag-c .txt{font-size:14px; line-height:1.6; color:#dcd9e6; white-space:pre-wrap; word-break:break-word}
-.gag-c .acts{display:flex; gap:14px; margin-top:6px}
+.gag-bubble{background:var(--gag-surface); border:1px solid var(--gag-border); border-radius:4px 12px 12px 12px; padding:10px 13px; font-size:14px; line-height:1.62; color:#e6e3f0; white-space:pre-wrap; word-break:break-word}
+.gag-c .acts{display:flex; gap:16px; margin-top:8px; padding-left:3px}
 .gag-c .acts button{background:none; border:none; color:var(--gag-muted); cursor:pointer; font-size:12px; padding:0; font-family:inherit}
 .gag-c .acts button:hover{color:var(--gag-text)}
 .gag-c .acts .del:hover{color:var(--gag-danger)}
-.gag-replies{margin:8px 0 0 14px; padding-left:12px; border-left:2px solid var(--gag-border)}
-.gag-replies .gag-c{padding:9px 0}
+.gag-replies{margin:10px 0 0; padding-left:12px; border-left:2px solid var(--gag-border)}
+.gag-replies .gag-c{padding:11px 0}
 .gag-badge{font-size:10.5px; color:var(--gag-danger); border:1px solid rgba(255,107,107,.4); border-radius:6px; padding:1px 6px}
 
 /* 작성 폼 */
@@ -98,12 +104,7 @@
 
 /* 댓글 수 배지 / 디렉터리 필터 */
 .gag-cnt{font-size:11.5px;font-weight:600;color:#cfcbd9;background:rgba(139,132,255,.18);border:1px solid rgba(139,132,255,.35);border-radius:999px;padding:2px 8px;white-space:nowrap}
-.gag-item.has .lbl{color:#fff;font-weight:400}
-.gag-filter{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 16px 8px}
-.gag-filter:empty{display:none}
-.gag-toggle{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--gag-muted);cursor:pointer}
-.gag-toggle input{accent-color:var(--gag-accent);width:15px;height:15px;cursor:pointer}
-.gag-total{font-size:12px;color:var(--gag-muted)}
+.gag-item.has .gag-itxt .lbl{color:#fff;font-weight:500}
 
 /* reCAPTCHA 고지문구 */
 .gag-recaptcha-note{margin-top:10px;font-size:11px;line-height:1.5;color:#6f6b7d}
