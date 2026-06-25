@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>소개 · 거대각성그래프</title>
+  <meta name="description" content="거대각성그래프는 개념과 관계를 인터랙티브 그래프로 시각화하고, 방문자가 자유롭게 의견을 나눌 수 있는 정보·토론 프로젝트입니다.">
+  <meta name="google-adsense-account" content="ca-pub-2417719116837573">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2417719116837573" crossorigin="anonymous"></script>
+  <style>
+    :root{
+      --bg:#0c0b10; --surface:#16151c; --surface-2:#1c1b24; --border:#2a2833;
+      --text:#ece9f2; --muted:#9a96a8; --accent:#8b84ff; --accent-2:#5b54e8;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);color:var(--text);
+      font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;
+      font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;
+      min-height:100vh;display:flex;flex-direction:column;
+    }
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header.site{
+      position:sticky;top:0;z-index:50;
+      background:rgba(12,11,16,.82);backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{max-width:880px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+    .brand{font-weight:700;font-size:17px;color:var(--text);letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+    .brand .dot{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--accent),var(--accent-2));box-shadow:0 0 12px rgba(139,132,255,.6)}
+    .nav nav{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
+    .nav nav a{color:var(--muted);font-size:14px;font-weight:400}
+    .nav nav a:hover{color:var(--text);text-decoration:none}
+    main{flex:1;max-width:880px;width:100%;margin:0 auto;padding:54px 22px 80px}
+    .eyebrow{color:var(--accent);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+    h1{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.25;margin-bottom:26px}
+    h2{font-size:21px;font-weight:500;margin:42px 0 14px;letter-spacing:-.01em}
+    p{color:#cfcbd9;margin:0 0 16px;font-size:16px}
+    ul{margin:0 0 18px;padding-left:20px;color:#cfcbd9}
+    li{margin-bottom:9px}
+    .lead{font-size:19px;color:var(--text);font-weight:400;line-height:1.7}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 28px;margin:30px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:24px 0}
+    .grid .item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px}
+    .grid .item h3{font-size:16px;font-weight:500;margin-bottom:8px;color:var(--text)}
+    .grid .item p{font-size:14px;color:var(--muted);margin:0}
+    .cta{display:inline-block;margin-top:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;padding:12px 24px;border-radius:10px;font-weight:500;font-size:15px}
+    .cta:hover{text-decoration:none;opacity:.92}
+    footer.site{border-top:1px solid var(--border);background:#0a0910}
+    .foot{max-width:880px;margin:0 auto;padding:30px 22px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+    .foot a{color:var(--muted)}.foot a:hover{color:var(--text)}
+    .foot .sep{opacity:.4}
+    .foot .copy{width:100%;margin-top:6px;opacity:.7}
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="nav">
+      <a class="brand" href="/"><span class="dot"></span>거대각성그래프</a>
+      <nav>
+        <a href="/">그래프</a>
+        <a href="/about.html">소개</a>
+        <a href="/privacy.html">개인정보처리방침</a>
+        <a href="/terms.html">이용약관</a>
+        <a href="/contact.html">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="eyebrow">About</div>
+    <h1>거대각성그래프 소개</h1>
+    <p class="lead">거대각성그래프는 여러 개념과 그 사이의 관계를 인터랙티브한 노드 그래프로 시각화하고, 방문자가 각 항목에 대해 자유롭게 의견을 나눌 수 있도록 만든 정보·토론 프로젝트입니다.</p>
+
+    <h2>무엇을 하는 사이트인가요</h2>
+    <p>복잡하게 얽힌 정보를 글로만 읽으면 전체 구조를 한눈에 파악하기 어렵습니다. 이 사이트는 그런 정보를 <strong>점(노드)과 선(연결)</strong>으로 펼쳐 보여 줍니다. 화면을 끌어 이동하고, 확대·축소하고, 관심 있는 노드를 눌러 살펴보면서 전체 그림과 세부 관계를 동시에 탐색할 수 있습니다.</p>
+
+    <div class="grid">
+      <div class="item"><h3>시각적 탐색</h3><p>관계를 그래프로 펼쳐 한눈에 구조를 파악합니다.</p></div>
+      <div class="item"><h3>노드별 토론</h3><p>각 항목마다 의견과 보충 정보를 자유롭게 남길 수 있습니다.</p></div>
+      <div class="item"><h3>열린 참여</h3><p>별도 가입 없이 누구나 가볍게 참여할 수 있습니다.</p></div>
+    </div>
+
+    <h2>운영 방식</h2>
+    <p>본 사이트는 개인이 비영리적 관심에서 운영하는 프로젝트이며, 사이트 유지를 위해 광고가 게재될 수 있습니다. 게시되는 그래프와 정보는 이해를 돕기 위한 참고 자료이며, 특정 사실의 완전성이나 정확성을 보장하지 않습니다. 방문자가 남긴 의견은 작성자 개인의 견해이며 운영자의 입장과 다를 수 있습니다.</p>
+
+    <h2>의견과 정정 요청</h2>
+    <p>내용에 대한 제안, 오류 정정, 삭제 요청 등은 언제든 환영합니다. 아래 문의처로 연락 주시면 확인 후 반영하겠습니다.</p>
+    <div class="card">
+      <p style="margin-bottom:14px">문의 및 제보는 이메일로 받고 있습니다.</p>
+      <a class="cta" href="/contact.html">문의하기</a>
+    </div>
+  </main>
+
+  <footer class="site">
+    <div class="foot">
+      <a href="/about.html">소개</a><span class="sep">·</span>
+      <a href="/privacy.html">개인정보처리방침</a><span class="sep">·</span>
+      <a href="/terms.html">이용약관</a><span class="sep">·</span>
+      <a href="/contact.html">문의</a><span class="sep">·</span>
+      <a href="mailto:queehen@proton.me">queehen@proton.me</a>
+      <div class="copy">© 2026 거대각성그래프. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>
