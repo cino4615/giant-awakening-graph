@@ -113,6 +113,14 @@
 /* 런처: 노드 컨텍스트 모드 */
 #gag-launcher.gag-node-mode{background:linear-gradient(135deg,#5fd39a,#2fae7a);box-shadow:0 6px 22px rgba(47,174,122,.45)}
 
+/* 앱 상세 모달에 끼워넣는 "토론방 열기" 버튼 (눈에 띄게) */
+.gag-open-btn{display:block;width:100%;margin:12px 0 4px;padding:12px 14px;border:none;border-radius:11px;
+  background:linear-gradient(135deg,#8b84ff,#5b54e8);color:#fff;text-align:center;
+  font:700 14px 'Noto Sans KR',-apple-system,sans-serif;letter-spacing:-.01em;cursor:pointer;
+  box-shadow:0 4px 16px rgba(91,84,232,.55);animation:gag-pulse 2.2s ease-in-out infinite;}
+.gag-open-btn:hover{filter:brightness(1.09)}
+@keyframes gag-pulse{0%,100%{box-shadow:0 3px 14px rgba(91,84,232,.45)}50%{box-shadow:0 5px 24px rgba(139,132,255,.9)}}
+
 @media (max-width:480px){
   #gag-panel{width:100vw}
   #gag-launcher{right:14px; bottom:14px}

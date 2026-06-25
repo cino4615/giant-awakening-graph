@@ -27,6 +27,7 @@
     (data.nodes || []).forEach(function (n) { nodeById[n.id] = n; labelToNode[n.label] = n; });
     buildUI();
     loadRecaptcha();
+    loadCounts();                 // 모달 버튼·디렉터리 배지용 댓글 수 미리 로드
     if (CFG.CLICK_HOOK) watchAppPanel();
   }
 
@@ -261,16 +262,43 @@
     var raf = null, last = null;
     new MutationObserver(function () { if (raf) return; raf = requestAnimationFrame(function () { raf = null; sync(); }); })
       .observe(document.body, { childList: true, subtree: true, characterData: true });
+
+    function findPanel(prev) {           // 상세 모달 = 위로 올라가며 만나는 첫 position:absolute
+      var el = prev;
+      while (el && el !== document.body) { if (getComputedStyle(el).position === 'absolute') return el; el = el.parentElement; }
+      return null;
+    }
+    function findNode(panel) {            // 모달 안에서 첫 '노드 라벨'(그룹 라벨 제외)이 선택 노드 제목
+      var all = panel.querySelectorAll('div,span');
+      for (var i = 0; i < all.length; i++) {
+        var t = (all[i].textContent || '').trim();
+        if (all[i].children.length <= 1 && labelToNode[t] && !groupLabels[t]) return labelToNode[t];
+      }
+      return null;
+    }
+    function injectOpenBtn(panel, node) {
+      var cnt = (COUNTS && COUNTS[node.id]) || 0;
+      var txt = '💬 이 노드 토론방' + (cnt ? ' · ' + cnt : '');
+      var btn = panel.querySelector('#gag-open-btn');
+      if (btn) { if (btn.dataset.node !== node.id) { btn.dataset.node = node.id; btn.textContent = txt; } return; }
+      btn = h('button', { id: 'gag-open-btn', class: 'gag-open-btn' }, txt);
+      btn.dataset.node = node.id;
+      btn.addEventListener('click', function (e) { e.stopPropagation(); openNode(btn.dataset.node); });
+      var header = panel.children[0];
+      if (header && header.insertAdjacentElement) header.insertAdjacentElement('afterend', btn);
+      else panel.appendChild(btn);
+    }
     function sync() {
       try {
-        var prev = document.querySelector('[title="이전 (←)"]') || document.querySelector('[title^="이전"]');
+        var prev = document.querySelector('[title^="이전"]');
         if (!prev) { if (last !== null) { last = null; setLauncher(null); } return; }
-        var panel = prev.closest('div[style*="position:absolute"]') || prev.parentElement;
-        var labelEl = panel && panel.querySelector('div[style*="font-size:19px"]');
-        var label = labelEl ? labelEl.textContent.trim() : null;
-        var node = label && labelToNode[label];
-        if (node && node.id !== last) { last = node.id; setLauncher(node); }
-      } catch (e) { /* 감지 실패해도 런처는 기본(디렉터리)로 동작 */ }
+        var panel = findPanel(prev);
+        if (!panel) return;
+        var node = findNode(panel);
+        if (!node) return;
+        if (node.id !== last) { last = node.id; setLauncher(node); }
+        injectOpenBtn(panel, node);
+      } catch (e) { /* 감지 실패해도 런처/디렉터리는 정상 동작 */ }
     }
   }
 
