@@ -7,7 +7,7 @@
 
 /* 런처 버튼 */
 #gag-launcher{
-  position:fixed; left:18px; bottom:18px; z-index:2147483400;
+  position:fixed; right:18px; bottom:18px; z-index:2147483400;
   display:flex; align-items:center; gap:8px; height:46px; padding:0 18px 0 16px;
   background:linear-gradient(135deg,var(--gag-accent),var(--gag-accent2)); color:#fff;
   border:none; border-radius:999px; cursor:pointer;
@@ -93,7 +93,27 @@
   background:linear-gradient(135deg,var(--gag-accent),var(--gag-accent2)); color:#fff; cursor:pointer;
   font:600 13px 'Noto Sans KR',sans-serif; box-shadow:0 4px 14px rgba(91,84,232,.4)}
 
+/* reCAPTCHA 배지 숨김(짤림 방지) — 대신 작성폼에 고지문구 표시(Google 약관 준수) */
+.grecaptcha-badge{visibility:hidden !important;}
+
+/* 댓글 수 배지 / 디렉터리 필터 */
+.gag-cnt{font-size:11.5px;font-weight:600;color:#cfcbd9;background:rgba(139,132,255,.18);border:1px solid rgba(139,132,255,.35);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.gag-item.has .lbl{color:#fff;font-weight:400}
+.gag-filter{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 16px 8px}
+.gag-filter:empty{display:none}
+.gag-toggle{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--gag-muted);cursor:pointer}
+.gag-toggle input{accent-color:var(--gag-accent);width:15px;height:15px;cursor:pointer}
+.gag-total{font-size:12px;color:var(--gag-muted)}
+
+/* reCAPTCHA 고지문구 */
+.gag-recaptcha-note{margin-top:10px;font-size:11px;line-height:1.5;color:#6f6b7d}
+.gag-recaptcha-note a{color:#8b84ff;text-decoration:none}
+.gag-recaptcha-note a:hover{text-decoration:underline}
+
+/* 런처: 노드 컨텍스트 모드 */
+#gag-launcher.gag-node-mode{background:linear-gradient(135deg,#5fd39a,#2fae7a);box-shadow:0 6px 22px rgba(47,174,122,.45)}
+
 @media (max-width:480px){
   #gag-panel{width:100vw}
-  #gag-launcher{left:14px; bottom:14px}
+  #gag-launcher{right:14px; bottom:14px}
 }

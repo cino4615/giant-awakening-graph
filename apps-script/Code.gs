@@ -35,6 +35,9 @@ function doGet(e) {
       if (!node) return out_({ ok: false, error: 'node 필요' }, cb);
       return out_({ ok: true, node: node, comments: listComments_(node) }, cb);
     }
+    if (p.action === 'counts') {
+      return out_({ ok: true, counts: countAll_() }, cb);
+    }
     return out_({ ok: false, error: 'unknown action' }, cb);
   } catch (err) {
     return out_({ ok: false, error: String(err) }, cb);
@@ -80,6 +83,19 @@ function listComments_(node) {
   }
   rows.sort(function (a, b) { return a.createdAt < b.createdAt ? -1 : 1; });
   return rows;
+}
+
+function countAll_() {
+  var values = getSheet_().getDataRange().getValues();
+  var m = {};
+  for (var i = 1; i < values.length; i++) {
+    var r = values[i];
+    if (r[7] === true || r[7] === 'TRUE') continue; // hidden 제외
+    var n = String(r[1] || '');                     // nodeId
+    if (!n) continue;
+    m[n] = (m[n] || 0) + 1;
+  }
+  return m;
 }
 
 function addComment_(data) {
