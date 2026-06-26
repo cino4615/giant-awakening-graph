@@ -82,7 +82,7 @@
     function rerender() { renderList(listHost, input.value.trim().toLowerCase()); }
     input.addEventListener('input', rerender);
     rerender();
-    if (!COUNTS_LOADED) loadCounts(function () { rerender(); });
+    loadCounts(function () { rerender(); });   // 열 때마다 최신 댓글 수 재조회 → 정렬·배지 갱신
     els.body.scrollTop = 0;
   }
 
