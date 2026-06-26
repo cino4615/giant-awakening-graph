@@ -56,15 +56,7 @@
     els = { launcher: launcher, launcherText: launcher.querySelector('.gag-ltext'), overlay: overlay, panel: panel, head: head, back: back, title: title, body: body };
   }
 
-  function onLauncher() {
-    var nid = els.launcher.dataset.node;
-    if (nid && nodeById[nid]) openNode(nid);
-    else { openPanel(); showDirectory(); }
-  }
-  function setLauncher(node) {
-    if (node) { els.launcher.dataset.node = node.id; els.launcherText.textContent = '이 노드 토론'; els.launcher.classList.add('gag-node-mode'); }
-    else { delete els.launcher.dataset.node; els.launcherText.textContent = '토론'; els.launcher.classList.remove('gag-node-mode'); }
-  }
+  function onLauncher() { openPanel(); showDirectory(); }   // 항상 디렉터리(노드별 토론 목록)
   function openPanel() { els.overlay.classList.add('open'); els.panel.classList.add('open'); }
   function closePanel() { els.overlay.classList.remove('open'); els.panel.classList.remove('open'); }
 
@@ -146,9 +138,12 @@
 
   function renderThread(listEl, nodeId, comments, countEl) {
     listEl.innerHTML = '';
-    var tops = comments.filter(function (c) { return !c.parentId; });
+    var byId = {};
+    comments.forEach(function (c) { byId[c.id] = c; });
+    // 최상위 댓글, 그리고 부모가 삭제돼 고아가 된 답글도 최상위로 노출(개수와 표시 일치)
+    var tops = comments.filter(function (c) { return !c.parentId || !byId[c.parentId]; });
     var childrenOf = {};
-    comments.forEach(function (c) { if (c.parentId) (childrenOf[c.parentId] = childrenOf[c.parentId] || []).push(c); });
+    comments.forEach(function (c) { if (c.parentId && byId[c.parentId]) (childrenOf[c.parentId] = childrenOf[c.parentId] || []).push(c); });
     if (!tops.length) { listEl.append(h('div', { class: 'gag-empty' }, '첫 번째 의견을 남겨보세요.')); return; }
     tops.forEach(function (c) {
       var card = commentCard(c, nodeId, countEl, listEl, false);
@@ -245,7 +240,7 @@
 
   /* -------------------- 앱 상세패널 감지 → 런처 컨텍스트 전환 -------------------- */
   function watchAppPanel() {
-    var raf = null, last = null;
+    var raf = null;
     new MutationObserver(function () { if (raf) return; raf = requestAnimationFrame(function () { raf = null; sync(); }); })
       .observe(document.body, { childList: true, subtree: true, characterData: true });
 
@@ -277,12 +272,17 @@
     function sync() {
       try {
         var prev = document.querySelector('[title^="이전"]');
-        if (!prev) { if (last !== null) { last = null; setLauncher(null); } return; }
+        var footer = document.getElementById('legal-footer');
+        var modalOpen = !!prev;
+        // 모바일: 노드 모달이 런처·법적푸터에 가리지 않도록, 모달이 열리면 둘을 숨김
+        var hideChrome = modalOpen && window.innerWidth <= 600;
+        if (els.launcher) els.launcher.style.display = hideChrome ? 'none' : '';
+        if (footer) footer.style.display = hideChrome ? 'none' : '';
+        if (!modalOpen) return;
         var panel = findPanel(prev);
         if (!panel) return;
         var node = findNode(panel);
         if (!node) return;
-        if (node.id !== last) { last = node.id; setLauncher(node); }
         injectOpenBtn(panel, node);
       } catch (e) { /* 감지 실패해도 런처/디렉터리는 정상 동작 */ }
     }
